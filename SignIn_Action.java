@@ -41,7 +41,7 @@ public class SignIn_Action extends TestNG {
 	    if(browser.equalsIgnoreCase("chrome")) {
 	    WebDriverManager.chromedriver().setup();
 		driver=new ChromeDriver();
-		driver.get("http://192.168.1.102/einsclms/loginpage.aspx");
+		driver.get("Company URL");
 		driver.manage().window().maximize();
 
 	    }
@@ -49,7 +49,7 @@ public class SignIn_Action extends TestNG {
 	   else if((browser.equalsIgnoreCase("firefox"))) {
 			WebDriverManager.firefoxdriver().setup();
 			driver=new FirefoxDriver();
-			driver.get("http://192.168.1.102/einsclms/loginpage.aspx");
+			driver.get("Company URL");
 			driver.manage().window().maximize();
 	    }
 	    
@@ -59,17 +59,17 @@ public class SignIn_Action extends TestNG {
 			
     }
 
-	@Test(groups = {"a"}, enabled = true)
+    @Test(groups = {"a"}, enabled = true)
     public static void Execute(WebDriver driver) throws Exception{
 		
 		
-		 try {
+try {
 			 
-//				TestNG tn = new TestNG();
+//	TestNG tn = new TestNG();
 				
-				lo = new LogIn_Page(driver); 
-		SignIn_Action.SignIn(1,driver);
-		log.info("signin action is compplete");
+	lo = new LogIn_Page(driver); 
+	SignIn_Action.SignIn(1,driver);
+	log.info("signin action is compplete");
         Thread.sleep(5000);
 
       
