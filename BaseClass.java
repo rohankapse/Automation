@@ -51,7 +51,7 @@ public class BaseClass {
 		    driver = new ChromeDriver(options);			
 			
 //			driver=new ChromeDriver();
-			driver.get("http://192.168.1.115/eins/loginpage.aspx");
+			driver.get("Company URL");
 			driver.manage().window().maximize();
 
 		    }
@@ -59,7 +59,7 @@ public class BaseClass {
 		   else if((browser.equalsIgnoreCase("firefox"))) {
 				WebDriverManager.firefoxdriver().setup();
 				driver=new FirefoxDriver();
-				driver.get("http://192.168.1.102/einsclms/loginpage.aspx");
+				driver.get("Comapany Url");
 				driver.manage().window().maximize();
 		    }
 		    
@@ -119,17 +119,17 @@ public class BaseClass {
 	public void startReport()
 	{
         // Create an object of Extent Reports
-		extent = new ExtentReports();
+	extent = new ExtentReports();
 
-		spark = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/CLMSExtentReport.html");
-		extent.attachReporter(spark);
-		extent.setSystemInfo("Host Name", "Automation Testing");
+	spark = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/CLMSExtentReport.html");
+	extent.attachReporter(spark);
+	extent.setSystemInfo("Host Name", "Automation Testing");
         extent.setSystemInfo("Environment", "Testing");
         extent.setSystemInfo("Eins", "CLMS");
         spark.config().setDocumentTitle("Eins CLMS Test Automation Report");
-               // Name of the report
+         // Name of the report
         spark.config().setReportName("CLMS Automation Report");
-               // Dark Theme
+         // Dark Theme
         spark.config().setTheme(Theme.DARK);
 
 	}
