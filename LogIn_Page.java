@@ -8,7 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import utility.TestNG;
 
 
-public class LogIn_Page extends TestNG {
+public class LogIn_Page extends TestNG
+{
 	
 	public LogIn_Page(WebDriver driver)
 	{
@@ -41,6 +42,10 @@ public class LogIn_Page extends TestNG {
 	
 	@FindBy(id = "ctl00_A3")
 	WebElement clms;
+	
+	@FindBy (xpath = "/html[1]/body[1]/form[1]/div[4]/div[1]/div[1]/div[4]/a[1]/div[1]")
+	WebElement vms;
+	
 	
 //	 private static WebElement element;
 
@@ -94,6 +99,10 @@ public class LogIn_Page extends TestNG {
 		clms.click();
 	}
 	
+	public void VMS ()
+	{
+		vms.click();
+	}
 	
-
+	
 }

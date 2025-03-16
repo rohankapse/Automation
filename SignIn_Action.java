@@ -28,64 +28,75 @@ public class SignIn_Action extends TestNG {
 	
 	
 	static Logger log = LogManager.getLogger(SignIn_Action.class);
+	
 	static LogIn_Page lo;
 	static Logout_Action LA;
 	
-
 	
 	@Parameters("browser")
 	@BeforeClass(groups = {"a"})
-	public void initElements(String browser, WebDriver driver) {
+	public void initElements(String browser, WebDriver driver) 
+	{
 
 //		TestNG tn = new TestNG();
-	    if(browser.equalsIgnoreCase("chrome")) {
-	    WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver();
-		driver.get("Company URL");
-		driver.manage().window().maximize();
+	    if(browser.equalsIgnoreCase("chrome")) 
+	    {
+	    	
+		    WebDriverManager.chromedriver().setup();
+			driver=new ChromeDriver();
+			driver.get("http://192.168.1.102/einsclms/loginpage.aspx");
+			driver.manage().window().maximize();
 
 	    }
 	    
-	   else if((browser.equalsIgnoreCase("firefox"))) {
+	   else if((browser.equalsIgnoreCase("firefox")))
+	   {
 			WebDriverManager.firefoxdriver().setup();
 			driver=new FirefoxDriver();
-			driver.get("Company URL");
+			driver.get("http://192.168.1.102/einsclms/loginpage.aspx");
 			driver.manage().window().maximize();
 	    }
 	    
-	   else {
+	   else 
+	   	{
 	         throw new IllegalArgumentException("The Browser Type is Undefined");
 	      }
 			
     }
 
-    @Test(groups = {"a"}, enabled = true)
+	@Test(groups = {"a"}, enabled = true)
     public static void Execute(WebDriver driver) throws Exception{
 		
 		
-try {
+		try {
 			 
-//	TestNG tn = new TestNG();
-				
-	lo = new LogIn_Page(driver); 
-	SignIn_Action.SignIn(1,driver);
-	log.info("signin action is compplete");
-        Thread.sleep(5000);
-
-      
-        Assert.assertTrue(lo.checkLogin());
-        log.info("login is successful");
-        ExcelUtils.setCellData("pass", 1, 3, Constant.File_TestData);
-        log.info("test case is passes");
-        SignIn_Action.log_out(driver);
+		//	TestNG tn = new TestNG();
+					
+			lo = new LogIn_Page(driver); 
+			SignIn_Action.SignIn(1,driver);
+			
+			log.info("signin action is compplete");
+	        Thread.sleep(5000);
+	
+	        
+	        Assert.assertTrue(lo.checkLogin());
+	        log.info("login is successful");
+	        ExcelUtils.setCellData("pass", 1, 3, Constant.File_TestData);
+	        log.info("test case is passes");
+	        SignIn_Action.log_out(driver);
+        
         }
-        catch(Exception e){
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile , new File(Constant.File_Screenshot + "loginpage_Execute.png"));
-        log.info("screenshot is captured");
-        ExcelUtils.setCellData("fail", 1, 3, Constant.File_TestData);
-        log.info("test case is failed");
-        Assert.fail();
+
+        catch(Exception e)
+		{
+        	
+	        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	        FileUtils.copyFile(screenshotFile , new File(Constant.File_Screenshot + "loginpage_Execute.png"));
+	        log.info("screenshot is captured");
+	        ExcelUtils.setCellData("fail", 1, 3, Constant.File_TestData);
+	        log.info("test case is failed");
+	        Assert.fail();
+        
         }
    }
 	
@@ -142,28 +153,40 @@ try {
 
 	        }
 	
-    public static WebDriver SignIn(int row, WebDriver driver) throws Exception{
+    public static WebDriver SignIn(int row, WebDriver driver) throws Exception
+    {
 			
 
 		lo = new LogIn_Page(driver);
 		
-		for(int i= row;i<=row;i++) {
+		for(int i= row;i<=row;i++)
+		{
+			
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Sheet1");
 		String sUserName = ExcelUtils.getCellData(i, 1);
 		log.info("username saved in variable from excel");
+		
 		String sPassword = ExcelUtils.getCellData(i, 2);
 		log.info("password saved in variable from excel");
+		
     	lo.txtbx_UserName(sUserName);
     	log.info("username value taken by textbox");
+    	
         lo.txtbx_Password(sPassword);
         log.info("password value taken by textbox");
+        
         lo.btn_LogIn();
         log.info("login button is clicked");
+        
         lo.Togglebox();
         Thread.sleep(1000);
+        
         log.info("Toggle Box is clicked");
-        lo.CLMS();
-        log.info("CLMS is clicked");
+        
+        lo.VMS();
+        log.info("VMS is clicked");
+        
+        
         ArrayList<String> hw = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(hw.get(1));    
         

@@ -15,7 +15,8 @@ import org.testng.annotations.Test;
 
 import utility.TestNG;
 
-public class Logout_Action extends TestNG {
+public class Logout_Action extends TestNG
+{
 
 	public static WebDriver driver;
 	static Logger log = LogManager.getLogger(SignIn_Action.class);
@@ -61,7 +62,6 @@ public class Logout_Action extends TestNG {
 	public static void selectDate(String month, String select_day, int Check_yearint, WebElement id1, WebElement id2, WebElement id3, WebElement id4, WebElement id5, WebElement id6) throws InterruptedException
 	{ 
 		
-
 		(id1).click();
 		log.info("date is clicked");
 		Thread.sleep(1000);
